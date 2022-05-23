@@ -1,6 +1,7 @@
 package View;
 
 import Controller.MainWindowControl;
+import Controller.SubwindowConecctionControl;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -18,63 +19,74 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
-public class MainWindow extends JFrame{
+public class MainWindow extends JFrame {
 
     //OPCIONES DEL MENÚ SUPERIOR
     public JMenuItem optionConectar;
     public JMenuItem optionDesconectar;
-    JMenuItem optionAbrir;
-    JMenuItem optionMostrar;
+    public JMenuItem optionAbrir;
+    public JMenuItem optionMostrar;
 
     //OPCIONES DEL MENÚ SERVIDOR
-    JMenuItem servidorOption;
-    JMenuItem conectarOption;
-    JMenuItem desconectarOption;
+    public JMenuItem servidorOption;
+    public JMenuItem conectarOption;
+    public JMenuItem desconectarOption;
     //BASE DE DATOS
-    JMenuItem bddOption;
-    JMenuItem abrirOption;
+    public JMenuItem bddOption;
+    public JMenuItem abrirOption;
     //TABLA
-    JMenuItem tablaOption;
-    JMenuItem mostrarOption;
+    public JMenuItem tablaOption;
+    public JMenuItem mostrarOption;
 
     //MARCOS SECUNDARIOS
     //PANEL CONEXION, ETIQUETAS
-    JLabel etiUsuario;
-    JLabel etiUsuarioShow;
-    JLabel etiPuerto;
-    JLabel etiPuertoShow;
-    JLabel etiConectado;
+    public JLabel etiUsuario;
+    public JLabel etiUsuarioShow;
+    public JLabel etiPuerto;
+    public JLabel etiPuertoShow;
+    public JLabel etiConectado;
 
     //PANEL BDD, ETIQUETAS, TEXTFIELD
-    JLabel etiNombreBDD;
-    JLabel etiNombreBDDShow;
-    JTextField bddTextfield;
+    public JLabel etiNombreBDD;
+    public JLabel etiNombreBDDShow;
+    public JTextField bddTextfield;
 
     //PANEL TABLA, ETIQUETAS, TEXTFIELD
-    JLabel etiNombreTabla;
-    JLabel etiNombreTablaShow;
-    JTextField tablaTextfield;
+    public JLabel etiNombreTabla;
+    public JLabel etiNombreTablaShow;
+    public JTextField tablaTextfield;
 
     //PANEL MOSTRARTABLA
     //ETIQUETAS, TEXTFIELD
-    JComboBox etiListaProvisional;
-    JLabel etiListaProvisional2;
-    JTable ta;
+    public JComboBox etiListaProvisional;
+    public JLabel etiListaProvisional2;
+    public JTable ta;
 
     //PANEL INFORMACIÓN
-    JLabel etiInformacion;
+    public JLabel etiInformacion;
 
+    //FRAME
+    public JFrame MainWindow;
+
+    //PANELES
+    public JPanel mainPanel;
+    public JPanel conexPanel;
+    public JPanel bddPanel;
+    public JPanel tablaPanel;
+    public JPanel mostrarTablaPanel;
+    public JPanel infoPanel;
+    
     public MainWindow() {
 
         //===========MARCO PRINCIPAL===========
-        JFrame MainWindow = new JFrame();
+        MainWindow = new JFrame();
         MainWindow.setSize(900, 450);        //DIMENSIONES
         MainWindow.setResizable(false);      //NO REDIMENSIONABLE
         MainWindow.setLocationRelativeTo(null);      //CENTRADA
         MainWindow.setTitle("Database App Suar PL");      //TÍTULO
 
         //==========PANEL PRINCIPAL===========
-        JPanel mainPanel = new JPanel();
+        mainPanel = new JPanel();
         mainPanel.setBounds(0, 0, 900, 450);
 
         //----------------------------------------------------------
@@ -89,7 +101,7 @@ public class MainWindow extends JFrame{
         //OPCIONES DEL MENÚ
         optionConectar = new JMenuItem("Conectar");
         optionDesconectar = new JMenuItem("Desconectar");
-        optionDesconectar.setEnabled(true); //DESHABILITADO POR DEFECTO
+        optionDesconectar.setEnabled(false); //DESHABILITADO POR DEFECTO
         optionAbrir = new JMenuItem("Abrir");
         optionAbrir.setEnabled(false);      //DESHABILITADO POR DEFECTO
         optionMostrar = new JMenuItem("Mostrar");
@@ -107,18 +119,18 @@ public class MainWindow extends JFrame{
         mb.add(m3);
 
         //==========PANEL DE CONEXIÓN==========
-        JPanel conexPanel = new JPanel();
+        conexPanel = new JPanel();
         conexPanel.setBorder(BorderFactory.createTitledBorder("Datos de la conexión"));
         conexPanel.setLayout(new FlowLayout(1, 90, 3));
         conexPanel.setBounds(0, 0, 900, 50);
-        conexPanel.setEnabled(false); //DESHABILITADO POR DEFECTO
+        conexPanel.setEnabled(true); //DESHABILITADO POR DEFECTO
 
         //OBJETOS DE PANEL DE CONEXIÓN
         etiUsuario = new JLabel("Usuario: ");
-        etiUsuarioShow = new JLabel("root");
+        etiUsuarioShow = new JLabel("");
         etiUsuarioShow.setForeground(Color.BLUE);
         etiPuerto = new JLabel("Puerto: ");
-        etiPuertoShow = new JLabel("3307");
+        etiPuertoShow = new JLabel("");
         etiPuertoShow.setForeground(Color.BLUE);
         etiConectado = new JLabel("Desconectado");
         etiConectado.setForeground(Color.RED); //Color por defecto
@@ -132,15 +144,15 @@ public class MainWindow extends JFrame{
 
         //-----------------------------------------------------------
         //==========PANEL DE BASE DE DATOS==============
-        JPanel bddPanel = new JPanel();
+        bddPanel = new JPanel();
         bddPanel.setBorder(BorderFactory.createTitledBorder("Base de datos"));
         bddPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        bddPanel.setEnabled(false); //DESHABILITADO POR DEFECTO
+        bddPanel.setEnabled(true); //DESHABILITADO POR DEFECTO
 
         etiNombreBDD = new JLabel("Nombre: ");
         bddTextfield = new JTextField();
         bddTextfield.setColumns(68);
-        bddTextfield.setEnabled(false);
+        bddTextfield.setEnabled(true);
         etiNombreBDDShow = new JLabel("infodata");
         etiNombreBDDShow.setForeground(Color.BLUE);
 
@@ -151,15 +163,15 @@ public class MainWindow extends JFrame{
 
         //-----------------------------------------------------------
         //PANEL TABLA
-        JPanel tablaPanel = new JPanel();
+        tablaPanel = new JPanel();
         tablaPanel.setBorder(BorderFactory.createTitledBorder("Tabla"));
         tablaPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        tablaPanel.setEnabled(false);  //DESHABILITADO POR DEFECTO
+        tablaPanel.setEnabled(true);  //DESHABILITADO POR DEFECTO
 
         etiNombreTabla = new JLabel("Nombre: ");
         tablaTextfield = new JTextField();
         tablaTextfield.setColumns(73);
-        tablaTextfield.setEnabled(false);
+        tablaTextfield.setEnabled(true);
 
         //OBJETOS DE PANEL DE TABLA
         tablaPanel.add(etiNombreTabla);
@@ -167,18 +179,18 @@ public class MainWindow extends JFrame{
 
         //-----------------------------------------------------------
         //PANEL MOSTRAR TABLA
-        JPanel mostrarTablaPanel = new JPanel();
+        mostrarTablaPanel = new JPanel();
         mostrarTablaPanel.setPreferredSize(new Dimension(878, 165));
         mostrarTablaPanel.setBorder(BorderFactory.createTitledBorder("Mostrar tabla"));
         mostrarTablaPanel.setLayout(new FlowLayout(1, 50, 0));
-        mostrarTablaPanel.setEnabled(false);  //DESHABILITADO POR DEFECTO
+        mostrarTablaPanel.setEnabled(true);  //DESHABILITADO POR DEFECTO
 
         etiListaProvisional = new JComboBox();
         etiListaProvisional.setPrototypeDisplayValue("XXXXXXXXXXXX");
-        etiListaProvisional.setEnabled(false);
-
+        etiListaProvisional.setEnabled(true);
+        
         mostrarTablaPanel.add(etiListaProvisional);
-
+        
         ta = new JTable();
         ta.setPreferredScrollableViewportSize(new Dimension(620, 120));
         JScrollPane sp = new JScrollPane(ta);
@@ -186,11 +198,11 @@ public class MainWindow extends JFrame{
 
         //-----------------------------------------------------------
         //PANEL INFORMACIÓN
-        JPanel infoPanel = new JPanel();
+        infoPanel = new JPanel();
         infoPanel.setPreferredSize(new Dimension(870, 45));
         infoPanel.setBorder(BorderFactory.createTitledBorder("Información"));
         infoPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-
+        
         etiInformacion = new JLabel("Información");
 
         //OBJETOS DE PANEL DE TABLA
@@ -206,20 +218,29 @@ public class MainWindow extends JFrame{
 
         //AÑADIENDO EL CONTENIDO DEL PANEL PRINCIPAL AL FRAME
         MainWindow.getContentPane().add(mainPanel);
-
+        
         MainWindow.setVisible(true);     //VISIBILIDAD
         MainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//CERRAR AL SALIR
-        
-        
-        
-        
-        //LISTENERS PRUEBA
-        
-        optionAbrir.addActionListener(new MainWindowControl(this)); //MANDA CONTROL AL CONTROLADOR CORRESPONDIENTE
-        
-                
 
+        //LISTENERS PRUEBA
+        optionAbrir.addActionListener(new MainWindowControl(this)); //MANDA CONTROL AL CONTROLADOR CORRESPONDIENTE
+        //optionMostrar.addActionListener(new MainWindowControl(ta));
         
     }
 
+
+    public void disabeall() {
+        mainPanel.setEnabled(false);
+        conexPanel.setEnabled(false);
+        bddPanel.setEnabled(false);
+        tablaPanel.setEnabled(false);
+        mostrarTablaPanel.setEnabled(false);
+        infoPanel.setEnabled(false);
+        
+        tablaTextfield.setEnabled(false);
+        
+        
+        
+    }
+    
 }
