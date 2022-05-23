@@ -21,8 +21,8 @@ import javax.swing.JComboBox;
 public class MainWindow extends JFrame{
 
     //OPCIONES DEL MENÚ SUPERIOR
-    JMenuItem optionConectar;
-    JMenuItem optionDesconectar;
+    public JMenuItem optionConectar;
+    public JMenuItem optionDesconectar;
     JMenuItem optionAbrir;
     JMenuItem optionMostrar;
 
@@ -89,7 +89,7 @@ public class MainWindow extends JFrame{
         //OPCIONES DEL MENÚ
         optionConectar = new JMenuItem("Conectar");
         optionDesconectar = new JMenuItem("Desconectar");
-        optionDesconectar.setEnabled(false); //DESHABILITADO POR DEFECTO
+        optionDesconectar.setEnabled(true); //DESHABILITADO POR DEFECTO
         optionAbrir = new JMenuItem("Abrir");
         optionAbrir.setEnabled(false);      //DESHABILITADO POR DEFECTO
         optionMostrar = new JMenuItem("Mostrar");
@@ -214,15 +214,9 @@ public class MainWindow extends JFrame{
         
         
         //LISTENERS PRUEBA
-        optionConectar.addActionListener(new MainWindowControl(this));      //MANDA CONTROL AL CONTROLADOR CORRESPONDIENTE
         
-        optionConectar.addActionListener(new ActionListener() {     //PRUEBA, LO GESTIONA DESDE AQUÍ
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                SubwindowConnection subSPL = new SubwindowConnection();
-
-            }
-        });
+        optionAbrir.addActionListener(new MainWindowControl(this)); //MANDA CONTROL AL CONTROLADOR CORRESPONDIENTE
+        
                 
 
         
