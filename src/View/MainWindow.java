@@ -214,7 +214,15 @@ public class MainWindow extends JFrame{
         
         
         //LISTENERS PRUEBA
-        optionConectar.addActionListener(new MainWindowControl(this));
+        optionConectar.addActionListener(new MainWindowControl(this));      //MANDA CONTROL AL CONTROLADOR CORRESPONDIENTE
+        
+        optionConectar.addActionListener(new ActionListener() {     //PRUEBA, LO GESTIONA DESDE AQUÍ
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SubwindowConnection subSPL = new SubwindowConnection();
+
+            }
+        });
                 
 
         

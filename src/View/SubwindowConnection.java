@@ -114,7 +114,7 @@ public class SubwindowConnection {
         subWindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
         //----------------------------------------------------------
-        //LISTENERS
+        //LISTENERS PRUEBA, EN REALIDAD LO GESTIONARÍA EN SUBWINDOWCONNECTIONCONTROL
         
         cancelButton.addActionListener(new ActionListener() {
             @Override
