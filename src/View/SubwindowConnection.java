@@ -13,40 +13,53 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import Controller.SubwindowConecctionControl;
 
 public class SubwindowConnection {
 
-    JLabel etiSubUser;
-    JLabel etiSubPassword;
-    JLabel etiSubPort;
-    JTextField userSubTextField;
-    JTextField passwordSubTextField;
-    JTextField portSubTextField;
+    public JLabel etiSubUser;
+    public JLabel etiSubPassword;
+    public JLabel etiSubPort;
+    public JTextField userSubTextField;
+    public JTextField passwordSubTextField;
+    public JTextField portSubTextField;
     
     //ESTADO DE LA CONEXIÓN
-    JLabel etiStatus;
+    public JLabel etiStatus;
+    
+    //FRAME
+    public JFrame subWindow;
+    
+    //PANELES
+    public JPanel credentialsPanel;
+    public JPanel statusPanel;
+    public JPanel connectPanel;
+    public JPanel subPanel;
     
 
     
     //BOTONES
-    JButton connectButton;
-    JButton cancelButton;
+    public JButton connectButton;
+    public JButton cancelButton;
 
-    public SubwindowConnection() {
+    public SubwindowConnection() throws Exception {
         //===========MARCO PRINCIPAL===========
-        JFrame subWindow = new JFrame();
+        
+        subWindow= new JFrame();
         subWindow.setSize(400, 300);        //DIMENSIONES
         subWindow.setResizable(false);      //NO REDIMENSIONABLE
         subWindow.setLocationRelativeTo(null);      //CENTRADA
         subWindow.setTitle("Servidor");      //TÍTULO
 
         //==========PANEL PRINCIPAL===========
-        JPanel subPanel = new JPanel();
+        
+        subPanel= new JPanel();
         subPanel.setLayout(new BorderLayout());
         
 
         //==========PANEL USER===============
-        JPanel credentialsPanel = new JPanel();
+        
+        credentialsPanel= new JPanel();
         //credentialsPanel.setSize(380, 100);
 
         credentialsPanel.setLayout(new GridLayout(3, 2));
@@ -70,7 +83,8 @@ public class SubwindowConnection {
                 
         //==========PANEL ESTADO===============
         
-        JPanel statusPanel = new JPanel();
+        
+        statusPanel= new JPanel();
         statusPanel.setLayout(new GridLayout(1, 2));
         statusPanel.setBackground(Color.CYAN);
 
@@ -83,7 +97,8 @@ public class SubwindowConnection {
         
         //==========PANEL BOTONES CONECTAR===============
         
-        JPanel connectPanel = new JPanel();
+        
+        connectPanel= new JPanel();
         connectPanel.setLayout(new FlowLayout());
         
         connectButton = new JButton("Conectar");
@@ -116,14 +131,15 @@ public class SubwindowConnection {
         //----------------------------------------------------------
         //LISTENERS PRUEBA, EN REALIDAD LO GESTIONARÍA EN SUBWINDOWCONNECTIONCONTROL
         
-        cancelButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               subWindow.setVisible(false);
-            }
-        });
+        //.addActionListener(new SubwindowConecctionControl(this)); //MANDA CONTROL AL CONTROLADOR CORRESPONDIENTE
         
 
         
     }
+
+    public void disableonstart() {
+        subWindow.setVisible(false);
+    }
+    
+
 }
