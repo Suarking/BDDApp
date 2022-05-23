@@ -20,7 +20,7 @@ public class Connect {
         try {
             //ESTABLECEMOS CONEXIÓN
             conexión1
-                    = DriverManager.getConnection("jdbc:mysql://localhost:3307/", "root", ""); //HABRÍA QUE USAR LOS VALORES DE LOS JTEXTFIELD
+                    = DriverManager.getConnection("jdbc:mysql://localhost:3307/", "root", ""); //HABRÍA QUE USAR LOS VALORES DE LOS JTEXTFIELD DE SUBWINDOWCONNECTION
 
         } catch (SQLException e) {
 

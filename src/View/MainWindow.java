@@ -140,6 +140,7 @@ public class MainWindow extends JFrame {
         etiNombreBDD = new JLabel("Nombre: ");
         bddTextfield = new JTextField();
         bddTextfield.setColumns(68);
+        bddTextfield.setEnabled(false);
         etiNombreBDDShow = new JLabel("infodata");
         etiNombreBDDShow.setForeground(Color.BLUE);
 
@@ -158,6 +159,7 @@ public class MainWindow extends JFrame {
         etiNombreTabla = new JLabel("Nombre: ");
         tablaTextfield = new JTextField();
         tablaTextfield.setColumns(73);
+        tablaTextfield.setEnabled(false);
 
         //OBJETOS DE PANEL DE TABLA
         tablaPanel.add(etiNombreTabla);

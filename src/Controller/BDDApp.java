@@ -1,8 +1,7 @@
 
 package Controller;
 
-import View.MainWindow;
-//import View.SubwindowConnection;
+import View.*;
 
 public class BDDApp {
 
