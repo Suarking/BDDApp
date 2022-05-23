@@ -27,6 +27,7 @@ public class MainWindowControl implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Desconectar");
                 Connect.Desconexion();
+                
                 m.disabeall();
 
             }
@@ -39,8 +40,12 @@ public class MainWindowControl implements ActionListener {
                     Connect.AbrirBdd(bddname);
                     m.etiNombreBDDShow.setText(bddname);
                     m.etiInformacion.setText("Base de datos en uso: " + bddname);
+                    
+                    //ACTIVAMOS MENÚ MOSTRAR TABLA
+                    m.optionMostrar.setEnabled(true);
                 } catch (SQLException ex) {
                     m.etiInformacion.setText("Base de datos no encontrada");
+                    
                 }
 
             }

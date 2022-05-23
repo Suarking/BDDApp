@@ -153,7 +153,7 @@ public class MainWindow extends JFrame {
         bddTextfield = new JTextField();
         bddTextfield.setColumns(68);
         bddTextfield.setEnabled(true);
-        etiNombreBDDShow = new JLabel("infodata");
+        etiNombreBDDShow = new JLabel("          ");
         etiNombreBDDShow.setForeground(Color.BLUE);
 
         //OBJETOS DE PANEL DE BDD
@@ -230,14 +230,23 @@ public class MainWindow extends JFrame {
 
 
     public void disabeall() {
+        
+        //PANELES
         mainPanel.setEnabled(false);
         conexPanel.setEnabled(false);
         bddPanel.setEnabled(false);
         tablaPanel.setEnabled(false);
         mostrarTablaPanel.setEnabled(false);
-        infoPanel.setEnabled(false);
         
+        //JTEXTFIELDS
+        bddTextfield.setEnabled(false);
         tablaTextfield.setEnabled(false);
+        
+        //OPCIONES DE MENÚ
+        optionAbrir.setEnabled(true);
+        optionDesconectar.setEnabled(false);
+        optionAbrir.setEnabled(false);
+        optionMostrar.setEnabled(false);
         
         
         

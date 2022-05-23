@@ -25,12 +25,18 @@ public class SubwindowConecctionControl implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    s.subWindow.setVisible(true);
+                    if (s.subWindow.isVisible()) {
+                        
+                    } else {
+                        s.subWindow.setVisible(true);
+                    }
+                    
+                   
 
                 } catch (Exception ex) {
                     Logger.getLogger(MainWindowControl.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                System.out.println("Creando subventana");
+                
 
             }
         });
@@ -54,6 +60,17 @@ public class SubwindowConecctionControl implements ActionListener {
                     m.etiConectado.setForeground(Color.GREEN);
                     //FIJAMOS EL ESTADO EN CONECTAR
                     s.etiStatus.setText("CONECTADO");
+                    //FIJAMOS LA INFO EN CONECTADO
+                    m.etiInformacion.setText("CONECTADO AL SERVIDOR MYSQL");
+                    
+                   
+                    //DESHABILITAMOS CONECTAR EN EL MENÚ, HABILITAMOS DESCONECTAR
+                    m.optionConectar.setEnabled(false);
+                    m.optionDesconectar.setEnabled(true);
+                    
+                    //HABILITAMOS EL PANEL BASE DE DATOS Y ABRIR
+                    m.bddTextfield.setEnabled(true);
+                    m.optionAbrir.setEnabled(true);
                     
                 } catch (Exception ex) {
                     s.etiStatus.setText("No ha sido posible conectar");
