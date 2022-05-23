@@ -28,6 +28,20 @@ public class Connect {
         }
 
     }
+    public static void Desconexion() {
+
+        try {
+            //ESTABLECEMOS CONEXIÓN
+           conexión1.close(); 
+
+        } catch (SQLException e) {
+
+            //CAPTURAR ERROR, CAMBIAR ETIQUETA DE ESTADO EN SUBVENTANA
+        }
+
+    }
+    
+    
     //HABRÍA QUE HACER MÉTODOS ESTÁTICOS PARA DESCONEXIÓN...
 
 }
