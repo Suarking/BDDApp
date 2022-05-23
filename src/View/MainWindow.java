@@ -18,7 +18,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
-public class MainWindow extends JFrame {
+public class MainWindow extends JFrame{
 
     //OPCIONES DEL MENÚ SUPERIOR
     JMenuItem optionConectar;
@@ -214,18 +214,9 @@ public class MainWindow extends JFrame {
         
         
         //LISTENERS PRUEBA
-        optionConectar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        optionConectar.addActionListener(new MainWindowControl(this));
                 
-                Object opcion = e.getSource();
-                if (opcion == optionConectar) {
-                    SubwindowConnection subSPL = new SubwindowConnection();
-                    //etiInformacion.setText("Has escogido la opción Conectar");
-                } 
 
-            }
-        });
         
     }
 
