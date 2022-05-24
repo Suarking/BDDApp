@@ -19,7 +19,7 @@ public class SubwindowConecctionControl implements ActionListener {
 
     public SubwindowConecctionControl(SubwindowConnection s, MainWindow m) throws Exception{
         this.s = s;
-        this.m=m;
+        this.m = m;
         
         m.optionConectar.addActionListener(new ActionListener() {
             @Override
@@ -62,6 +62,7 @@ public class SubwindowConecctionControl implements ActionListener {
                     s.etiStatus.setText("CONECTADO");
                     //FIJAMOS LA INFO EN CONECTADO
                     m.etiInformacion.setText("CONECTADO AL SERVIDOR MYSQL");
+                    m.conexPanel.setEnabled(true);
                     
                    
                     //DESHABILITAMOS CONECTAR EN EL MENÚ, HABILITAMOS DESCONECTAR

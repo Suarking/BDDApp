@@ -79,7 +79,7 @@ public class MainWindow extends JFrame {
     public JPanel tablaPanel;
     public JPanel mostrarTablaPanel;
     public JPanel infoPanel;
-    
+
     public MainWindow() {
 
         //===========MARCO PRINCIPAL===========
@@ -191,17 +191,16 @@ public class MainWindow extends JFrame {
 
         comboListaTablas = new JComboBox();
         comboListaTablas.setPrototypeDisplayValue("XXXXXXXXXXXX");
-        comboListaTablas.addItem("Valor por defecto");
-        comboListaTablas.addItem("Valor por defecto 2");
+        comboListaTablas.addItem("Selecciona tabla");
+
         comboListaTablas.setEnabled(true);
-        
+
         mostrarTablaPanel.add(comboListaTablas);
-        
-        
+
         ta = new JTable();
         ta.setPreferredScrollableViewportSize(new Dimension(620, 120));
-        
-        sp= new JScrollPane(ta);
+
+        sp = new JScrollPane(ta);
         mostrarTablaPanel.add(sp);
 
         //-----------------------------------------------------------
@@ -210,7 +209,7 @@ public class MainWindow extends JFrame {
         infoPanel.setPreferredSize(new Dimension(870, 45));
         infoPanel.setBorder(BorderFactory.createTitledBorder("Información"));
         infoPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        
+
         etiInformacion = new JLabel("Información");
 
         //OBJETOS DE PANEL DE TABLA
@@ -226,29 +225,26 @@ public class MainWindow extends JFrame {
 
         //AÑADIENDO EL CONTENIDO DEL PANEL PRINCIPAL AL FRAME
         MainWindow.getContentPane().add(mainPanel);
-        
+
         MainWindow.setVisible(true);     //VISIBILIDAD
         MainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//CERRAR AL SALIR
 
         //LISTENERS PRUEBA
         optionAbrir.addActionListener(new MainWindowControl(this)); //MANDA CONTROL AL CONTROLADOR CORRESPONDIENTE
-        
-        
-        
-    
-    
-
 
         optionMostrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String selectedTable;
                 try {
                     tmodelo = new DefaultTableModel(); //cada vez que se pulsa el
 //botón se resetea el modelo y
                     ta.setModel(tmodelo); //se aplica de nuevo a la tabla
+                    selectedTable = comboListaTablas.getSelectedItem().toString();
+                    tablaTextfield.setText(selectedTable);
 
-                    Connect.MostrarTabla(tmodelo, ta);
-                    System.out.println("Mostrando tabla");
+                    Connect.MostrarTabla(tmodelo, ta, selectedTable);
+                    etiInformacion.setText("Visualizando tabla " + selectedTable);
 
                 } catch (Exception ex) {
 
@@ -259,29 +255,44 @@ public class MainWindow extends JFrame {
         });
     }
 
-
-
     public void disabeall() {
-        
+
         //PANELES
         mainPanel.setEnabled(false);
         conexPanel.setEnabled(false);
         bddPanel.setEnabled(false);
         tablaPanel.setEnabled(false);
         mostrarTablaPanel.setEnabled(false);
-        
+
         //JTEXTFIELDS
         bddTextfield.setEnabled(false);
         tablaTextfield.setEnabled(false);
-        
+
         //OPCIONES DE MENÚ
-        optionAbrir.setEnabled(true);
+        optionConectar.setEnabled(true);
         optionDesconectar.setEnabled(false);
         optionAbrir.setEnabled(false);
         optionMostrar.setEnabled(false);
+
+        //COMBOBOX
+        
+        comboListaTablas.removeAllItems();
+        comboListaTablas.addItem("Selecciona Tabla");
+        comboListaTablas.setEnabled(false);
         
         
-        
+        //TABLA USADA
+        etiNombreBDDShow.setText("          ");
+        bddTextfield.setText("");
+        tablaTextfield.setText("");
+
+        //DATOS DE CONEXIÓN E INFORMACIÓN
+        etiInformacion.setText("Información");
+        etiUsuarioShow.setText("");
+        etiPuertoShow.setText("");
+        etiConectado.setText("Desconectado");
+        etiConectado.setForeground(Color.RED); //Color por defecto
+
     }
-    
+
 }
