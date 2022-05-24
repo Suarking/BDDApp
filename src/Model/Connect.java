@@ -36,6 +36,9 @@ public class Connect {
 
     public static ArrayList<String> setComboArray() throws SQLException {
         ArrayList showTables = new ArrayList();
+        
+        //HACEMOS LA CONSULTA DE TODOS LOS NOMBRES DE TABLA DE LA BDD
+        //Y LOS INTRODUCIMOS EN UN ARRAYLIST QUE DEVOLVEMOS
 
         rs = st.executeQuery("Show tables");
 
@@ -88,16 +91,11 @@ public class Connect {
 
     }
 
-    public static void Desconexion() {
+    public static void Desconexion() throws Exception{
 
-        try {
-            //ESTABLECEMOS CONEXIÓN
+
+            //ESTABLECEMOS DESCONEXIÓN
             conexión1.close();
-
-        } catch (SQLException e) {
-
-            //CAPTURAR ERROR, CAMBIAR ETIQUETA DE ESTADO EN SUBVENTANA
-        }
 
     }
 
