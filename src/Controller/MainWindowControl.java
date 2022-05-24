@@ -30,12 +30,16 @@ public class MainWindowControl implements ActionListener {
         //DESCONECTAR
         m.optionDesconectar.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) throws NullPointerException {
 
+                try {
+                    m.tmodelo.setRowCount(0);
+                    m.tmodelo.setColumnCount(0);
+                    Connect.Desconexion();
+                } catch (Exception ne) {
+
+                }
                 disabeall();
-                m.tmodelo.setRowCount(0);
-                m.tmodelo.setColumnCount(0);
-                Connect.Desconexion();
 
             }
         });
