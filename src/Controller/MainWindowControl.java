@@ -31,12 +31,8 @@ public class MainWindowControl implements ActionListener {
         m.optionDesconectar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-                
-                
 
-
-                m.disabeall();
+                disabeall();
                 m.tmodelo.setRowCount(0);
                 m.tmodelo.setColumnCount(0);
                 Connect.Desconexion();
@@ -90,6 +86,44 @@ public class MainWindowControl implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+    }
+
+    public void disabeall() {
+
+        //PANELES
+        m.mainPanel.setEnabled(false);
+        m.conexPanel.setEnabled(false);
+        m.bddPanel.setEnabled(false);
+        m.tablaPanel.setEnabled(false);
+        m.mostrarTablaPanel.setEnabled(false);
+
+        //JTEXTFIELDS
+        m.bddTextfield.setEnabled(false);
+        m.tablaTextfield.setEnabled(false);
+
+        //OPCIONES DE MENÚ
+        m.optionConectar.setEnabled(true);
+        m.optionDesconectar.setEnabled(false);
+        m.optionAbrir.setEnabled(false);
+        m.optionMostrar.setEnabled(false);
+
+        //COMBOBOX
+        m.comboListaTablas.removeAllItems();
+        m.comboListaTablas.addItem("Selecciona Tabla");
+        m.comboListaTablas.setEnabled(false);
+
+        //TABLA USADA
+        m.etiNombreBDDShow.setText("          ");
+        m.bddTextfield.setText("");
+        m.tablaTextfield.setText("");
+
+        //DATOS DE CONEXIÓN E INFORMACIÓN
+        m.etiInformacion.setText("Información");
+        m.etiUsuarioShow.setText("");
+        m.etiPuertoShow.setText("");
+        m.etiConectado.setText("Desconectado");
+        m.etiConectado.setForeground(Color.RED); //Color por defecto
 
     }
 

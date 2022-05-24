@@ -1,7 +1,6 @@
 package View;
 
 import Controller.MainWindowControl;
-import Controller.SubwindowConecctionControl;
 import Model.Connect;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -79,7 +78,7 @@ public class MainWindow extends JFrame {
     public JPanel tablaPanel;
     public JPanel mostrarTablaPanel;
     public JPanel infoPanel;
-
+    
     public MainWindow() {
 
         //===========MARCO PRINCIPAL===========
@@ -104,6 +103,7 @@ public class MainWindow extends JFrame {
 
         //OPCIONES DEL MENÚ
         optionConectar = new JMenuItem("Conectar");
+        optionConectar.setEnabled(true);
         optionDesconectar = new JMenuItem("Desconectar");
         optionDesconectar.setEnabled(false); //DESHABILITADO POR DEFECTO
         optionAbrir = new JMenuItem("Abrir");
@@ -127,7 +127,7 @@ public class MainWindow extends JFrame {
         conexPanel.setBorder(BorderFactory.createTitledBorder("Datos de la conexión"));
         conexPanel.setLayout(new FlowLayout(1, 90, 3));
         conexPanel.setBounds(0, 0, 900, 50);
-        conexPanel.setEnabled(true); //DESHABILITADO POR DEFECTO
+        conexPanel.setEnabled(false); //DESHABILITADO POR DEFECTO
 
         //OBJETOS DE PANEL DE CONEXIÓN
         etiUsuario = new JLabel("Usuario: ");
@@ -151,12 +151,12 @@ public class MainWindow extends JFrame {
         bddPanel = new JPanel();
         bddPanel.setBorder(BorderFactory.createTitledBorder("Base de datos"));
         bddPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        bddPanel.setEnabled(true); //DESHABILITADO POR DEFECTO
+        bddPanel.setEnabled(false); //DESHABILITADO POR DEFECTO
 
         etiNombreBDD = new JLabel("Nombre: ");
         bddTextfield = new JTextField();
         bddTextfield.setColumns(68);
-        bddTextfield.setEnabled(true);
+        bddTextfield.setEnabled(false);
         etiNombreBDDShow = new JLabel("          ");
         etiNombreBDDShow.setForeground(Color.BLUE);
 
@@ -170,12 +170,12 @@ public class MainWindow extends JFrame {
         tablaPanel = new JPanel();
         tablaPanel.setBorder(BorderFactory.createTitledBorder("Tabla"));
         tablaPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        tablaPanel.setEnabled(true);  //DESHABILITADO POR DEFECTO
+        tablaPanel.setEnabled(false);  //DESHABILITADO POR DEFECTO
 
         etiNombreTabla = new JLabel("Nombre: ");
         tablaTextfield = new JTextField();
         tablaTextfield.setColumns(73);
-        tablaTextfield.setEnabled(true);
+        tablaTextfield.setEnabled(false);
 
         //OBJETOS DE PANEL DE TABLA
         tablaPanel.add(etiNombreTabla);
@@ -187,19 +187,19 @@ public class MainWindow extends JFrame {
         mostrarTablaPanel.setPreferredSize(new Dimension(878, 165));
         mostrarTablaPanel.setBorder(BorderFactory.createTitledBorder("Mostrar tabla"));
         mostrarTablaPanel.setLayout(new FlowLayout(1, 50, 0));
-        mostrarTablaPanel.setEnabled(true);  //DESHABILITADO POR DEFECTO
+        mostrarTablaPanel.setEnabled(false);  //DESHABILITADO POR DEFECTO
 
         comboListaTablas = new JComboBox();
         comboListaTablas.setPrototypeDisplayValue("XXXXXXXXXXXX");
         comboListaTablas.addItem("Selecciona tabla");
-
-        comboListaTablas.setEnabled(true);
-
+        
+        comboListaTablas.setEnabled(false);
+        
         mostrarTablaPanel.add(comboListaTablas);
-
+        
         ta = new JTable();
         ta.setPreferredScrollableViewportSize(new Dimension(620, 120));
-
+        
         sp = new JScrollPane(ta);
         mostrarTablaPanel.add(sp);
 
@@ -209,7 +209,8 @@ public class MainWindow extends JFrame {
         infoPanel.setPreferredSize(new Dimension(870, 45));
         infoPanel.setBorder(BorderFactory.createTitledBorder("Información"));
         infoPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-
+        infoPanel.setEnabled(true);
+        
         etiInformacion = new JLabel("Información");
 
         //OBJETOS DE PANEL DE TABLA
@@ -225,7 +226,7 @@ public class MainWindow extends JFrame {
 
         //AÑADIENDO EL CONTENIDO DEL PANEL PRINCIPAL AL FRAME
         MainWindow.getContentPane().add(mainPanel);
-
+        
         MainWindow.setVisible(true);     //VISIBILIDAD
         MainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//CERRAR AL SALIR
 
@@ -242,57 +243,17 @@ public class MainWindow extends JFrame {
                     ta.setModel(tmodelo); //se aplica de nuevo a la tabla
                     selectedTable = comboListaTablas.getSelectedItem().toString();
                     tablaTextfield.setText(selectedTable);
-
+                    
                     Connect.MostrarTabla(tmodelo, ta, selectedTable);
                     etiInformacion.setText("Visualizando tabla " + selectedTable);
-
+                    
                 } catch (Exception ex) {
-
+                    
                     etiInformacion.setText("Tabla no encontrada");
                 }
-
+                
             }
         });
     }
-
-    public void disabeall() {
-
-        //PANELES
-        mainPanel.setEnabled(false);
-        conexPanel.setEnabled(false);
-        bddPanel.setEnabled(false);
-        tablaPanel.setEnabled(false);
-        mostrarTablaPanel.setEnabled(false);
-
-        //JTEXTFIELDS
-        bddTextfield.setEnabled(false);
-        tablaTextfield.setEnabled(false);
-
-        //OPCIONES DE MENÚ
-        optionConectar.setEnabled(true);
-        optionDesconectar.setEnabled(false);
-        optionAbrir.setEnabled(false);
-        optionMostrar.setEnabled(false);
-
-        //COMBOBOX
-        
-        comboListaTablas.removeAllItems();
-        comboListaTablas.addItem("Selecciona Tabla");
-        comboListaTablas.setEnabled(false);
-        
-        
-        //TABLA USADA
-        etiNombreBDDShow.setText("          ");
-        bddTextfield.setText("");
-        tablaTextfield.setText("");
-
-        //DATOS DE CONEXIÓN E INFORMACIÓN
-        etiInformacion.setText("Información");
-        etiUsuarioShow.setText("");
-        etiPuertoShow.setText("");
-        etiConectado.setText("Desconectado");
-        etiConectado.setForeground(Color.RED); //Color por defecto
-
-    }
-
+    
 }
