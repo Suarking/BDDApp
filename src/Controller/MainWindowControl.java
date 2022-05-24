@@ -5,14 +5,9 @@ import java.awt.event.ActionListener;
 import Model.*;
 import View.*;
 import java.awt.Color;
-import java.awt.List;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,20 +20,24 @@ public class MainWindowControl implements ActionListener {
 
     public MainWindowControl(MainWindow m) {
         this.m = m;
+        //CONTROLADOR SIMPLE DE VENTANA PRINCIPAL
 
         //ABRIR VENTANA CONEXIÓN
         //DESCONECTAR
         m.optionDesconectar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) throws NullPointerException {
-
+        
                 try {
+                    //BORRAMOS LA TABLA ACTIVA
                     m.tmodelo.setRowCount(0);
                     m.tmodelo.setColumnCount(0);
+                    //LLAMAMOS A DESCONECTAR
                     Connect.Desconexion();
                 } catch (Exception ne) {
 
                 }
+                //DESHABILITAMOS ETIQUETAS, PANELES, ETC...
                 disabeall();
 
             }
@@ -49,24 +48,31 @@ public class MainWindowControl implements ActionListener {
                 try {
 
                     String bddname = m.bddTextfield.getText();
+                    //LLAMAMOS AL MÉTODO PARA ABRIR LA BDD PASÁNDOLE EL NOMBRE 
+                    //QUE HAY ESCRITO EN EL JTEXTFIELD CORRESPONDIENTE
 
                     Connect.AbrirBdd(bddname);
+                    
+                    //UTILIZAMOS EL RETURN DEL MÉTODO SETCOMBOARRAY PARA INTRODUCIR LOS 
+                    //VALORES EN UN ARRAY LOCAL
                     ArrayList<String> comboTables = Connect.setComboArray();
-                    String[] comboStringTables = comboTables.toArray(new String[comboTables.size()]);
+                  
 
+                    //INTRODUCIMOS LOS VALORES DEL ARRAY EN UN MODELO DE  JCOMBOBOX
                     DefaultComboBoxModel dml = new DefaultComboBoxModel();
                     for (int i = 0; i < comboTables.size(); i++) {
                         dml.addElement(comboTables.get(i));
                     }
+                    //APLICAMOS EL MODELO AL COMBOBOX, ACTIVAMOS ELEMENTOS
 
                     m.comboListaTablas.setModel(dml);
                     m.comboListaTablas.setEnabled(true);
                     m.tablaTextfield.setEnabled(true);
 
-                    //System.out.println(comboArray.length);
+                    //ACTUALIZAMOS INFORMACIÓN
                     m.etiNombreBDDShow.setText(bddname);
                     m.etiInformacion.setText("Base de datos en uso: " + bddname);
-                    Connect.setComboArray();
+                    
 
                     //ACTIVAMOS MENÚ MOSTRAR TABLA
                     m.optionMostrar.setEnabled(true);
@@ -82,18 +88,7 @@ public class MainWindowControl implements ActionListener {
         });
 
     }
-
-    //CONSTRUCTOR POR DEFECTO
-    public MainWindowControl() {
-
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
-
-    public void disabeall() {
+       public void disabeall() {
 
         //PANELES
         m.mainPanel.setEnabled(false);
@@ -130,5 +125,17 @@ public class MainWindowControl implements ActionListener {
         m.etiConectado.setForeground(Color.RED); //Color por defecto
 
     }
+
+    //CONSTRUCTOR POR DEFECTO
+    public MainWindowControl() {
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+    
 
 }

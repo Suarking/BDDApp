@@ -16,6 +16,7 @@ public class SubwindowConecctionControl implements ActionListener {
 
     public SubwindowConnection s;
     public MainWindow m;
+    //CONTROLADOR QUE NOS PERMITE MANEJAR LA VENTANA PRINCIPAL
 
     public SubwindowConecctionControl(SubwindowConnection s, MainWindow m) throws Exception {
         this.s = s;
@@ -37,7 +38,7 @@ public class SubwindowConecctionControl implements ActionListener {
 
             }
         });
-
+       
         s.connectButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -48,6 +49,9 @@ public class SubwindowConecctionControl implements ActionListener {
 
                     //LLAMAMOS AL MÉTODO ESTÁTICO CONEXIÓN, PASANDO VALORES DE LOS JTEXTFIELD DE CREDENCIALES
                     Connect.Conexion(user, port);
+                    //ACTIVAMOS PANELES
+                    m.conexPanel.setEnabled(true);
+                    m.bddPanel.setEnabled(true);
                     //PASAMOS CREDENCIALES DE CONEXIÓN A PANEL PRINCIPAL
                     m.etiUsuarioShow.setText(user);
                     m.etiPuertoShow.setText(port);
@@ -57,7 +61,7 @@ public class SubwindowConecctionControl implements ActionListener {
                     s.etiStatus.setText("CONECTADO");
                     //FIJAMOS LA INFO EN CONECTADO
                     m.etiInformacion.setText("CONECTADO AL SERVIDOR MYSQL");
-                    m.conexPanel.setEnabled(true);
+                    
 
                     //DESHABILITAMOS CONECTAR EN EL MENÚ, HABILITAMOS DESCONECTAR
                     m.optionConectar.setEnabled(false);
@@ -83,6 +87,7 @@ public class SubwindowConecctionControl implements ActionListener {
         });
 
     }
+ 
 
     public SubwindowConecctionControl() {
 

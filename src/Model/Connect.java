@@ -49,16 +49,7 @@ public class Connect {
 
     public static void MostrarTabla(DefaultTableModel tmodelo, JTable ta, String selectedTable) throws SQLException {
         try {
-            /*
- //1. Establecer una conexión
- conexión1 =
-DriverManager.getConnection("jdbc:mysql://localhost:3307/infodata", "root", "");
- //2. Crear un objeto Statement
- st = conexión1.createStatement();
 
-
- //3. Ejecutar una sentencia SQL (se pone la BD en uso)
- st.executeUpdate("use infodata");*/
             //3. Ejecutar una sentencia SQL
             rs = st.executeQuery("SELECT * FROM " + selectedTable);
             rsmd = rs.getMetaData(); // se extraen los metadatos a partir
