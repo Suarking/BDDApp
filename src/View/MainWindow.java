@@ -2,6 +2,7 @@ package View;
 
 import Controller.MainWindowControl;
 import Controller.SubwindowConecctionControl;
+import Model.Connect;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -18,6 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.table.DefaultTableModel;
 
 public class MainWindow extends JFrame {
 
@@ -58,9 +60,11 @@ public class MainWindow extends JFrame {
 
     //PANEL MOSTRARTABLA
     //ETIQUETAS, TEXTFIELD
-    public JComboBox etiListaProvisional;
+    public JComboBox comboListaTablas;
     public JLabel etiListaProvisional2;
     public JTable ta;
+    public JScrollPane sp;
+    public DefaultTableModel tmodelo;
 
     //PANEL INFORMACIÓN
     public JLabel etiInformacion;
@@ -185,15 +189,19 @@ public class MainWindow extends JFrame {
         mostrarTablaPanel.setLayout(new FlowLayout(1, 50, 0));
         mostrarTablaPanel.setEnabled(true);  //DESHABILITADO POR DEFECTO
 
-        etiListaProvisional = new JComboBox();
-        etiListaProvisional.setPrototypeDisplayValue("XXXXXXXXXXXX");
-        etiListaProvisional.setEnabled(true);
+        comboListaTablas = new JComboBox();
+        comboListaTablas.setPrototypeDisplayValue("XXXXXXXXXXXX");
+        comboListaTablas.addItem("Valor por defecto");
+        comboListaTablas.addItem("Valor por defecto 2");
+        comboListaTablas.setEnabled(true);
         
-        mostrarTablaPanel.add(etiListaProvisional);
+        mostrarTablaPanel.add(comboListaTablas);
+        
         
         ta = new JTable();
         ta.setPreferredScrollableViewportSize(new Dimension(620, 120));
-        JScrollPane sp = new JScrollPane(ta);
+        
+        sp= new JScrollPane(ta);
         mostrarTablaPanel.add(sp);
 
         //-----------------------------------------------------------
@@ -224,9 +232,33 @@ public class MainWindow extends JFrame {
 
         //LISTENERS PRUEBA
         optionAbrir.addActionListener(new MainWindowControl(this)); //MANDA CONTROL AL CONTROLADOR CORRESPONDIENTE
-        //optionMostrar.addActionListener(new MainWindowControl(ta));
         
+        
+        
+    
+    
+
+
+        optionMostrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    tmodelo = new DefaultTableModel(); //cada vez que se pulsa el
+//botón se resetea el modelo y
+                    ta.setModel(tmodelo); //se aplica de nuevo a la tabla
+
+                    Connect.MostrarTabla(tmodelo, ta);
+                    System.out.println("Mostrando tabla");
+
+                } catch (Exception ex) {
+
+                    etiInformacion.setText("Tabla no encontrada");
+                }
+
+            }
+        });
     }
+
 
 
     public void disabeall() {
